@@ -10,7 +10,7 @@ export default function ListPage() {
       {lists && (
         <>
           {lists.map((list) => {
-            return <List key={list.id} list={list} />;
+            return <List key={list._id} list={list} />;
           })}
         </>
       )}

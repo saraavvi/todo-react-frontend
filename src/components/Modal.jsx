@@ -1,15 +1,16 @@
 import React from "react";
+import classes from "./Modal.module.css";
 
 const Modal = ({ title, body }) => {
   return (
     <>
-      <div className="modalContainer">
+      <div className={classes["modal-container"]}>
         <div className="modal">
-          <header className="modal_header">
-            <h2 className="modal_header-title">{title}</h2>
+          <header className="modal-header">
+            <h2 className="modal-header-title">{title}</h2>
             <button className="close">x</button>
           </header>
-          <main className="modal_content">{body}</main>
+          <main className="modal-content">{body}</main>
         </div>
       </div>
     </>

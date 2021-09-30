@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import ListPage from "./pages/ListPage";
 import LoginPage from "./pages/LoginPage";
+import { ListContext } from "./contexts/ListContext";
+
 function App() {
+  const [lists, setLists] = useState(null);
+
   useEffect(() => {
     getAllLists();
   }, []);
@@ -16,20 +20,24 @@ function App() {
       },
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        setLists(data.data.lists);
+      });
   }
   return (
-    <div>
-      <h1>Todo App!</h1>
-      <Switch>
-        <Route path="/login">
-          <LoginPage />
-        </Route>
-        <Route path="/">
-          <ListPage />
-        </Route>
-      </Switch>
-    </div>
+    <ListContext.Provider value="lists">
+      <div>
+        <h1>Todo App!</h1>
+        <Switch>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
+          <Route path="/">
+            <ListPage />
+          </Route>
+        </Switch>
+      </div>
+    </ListContext.Provider>
   );
 }
 

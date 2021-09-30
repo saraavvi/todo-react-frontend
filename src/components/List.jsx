@@ -1,11 +1,17 @@
-import React, { useContext } from "react";
-import { ListContext } from "../contexts/ListContext";
+import React, { useState } from "react";
+import Modal from "../components/Modal";
 
 export default function List({ list }) {
-  const { toggleModal } = useContext(ListContext);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOnClick = () => {
+    showModal ? setShowModal(false) : setShowModal(true);
+  };
+
   return (
-    <div>
-      <h2 onClick={() => toggleModal()}>{list.title}</h2>
+    <div onClick={handleOnClick}>
+      <h2>{list.title}</h2>
+      {showModal && <Modal title={list.title} body={list.body} />}
     </div>
   );
 }

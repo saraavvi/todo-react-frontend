@@ -3,15 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import ListPage from "./pages/ListPage";
 import LoginPage from "./pages/LoginPage";
 import { ListContext } from "./contexts/ListContext";
-import Modal from "./components/Modal";
 
 function App() {
   const [lists, setLists] = useState(null);
-  const [modal, setModal] = useState(false);
-
-  function toggleModal() {
-    setModal(!modal);
-  }
 
   useEffect(() => {
     getAllLists();
@@ -31,11 +25,8 @@ function App() {
       });
   }
   return (
-    <ListContext.Provider
-      value={{ lists, setLists, modal, setModal, toggleModal }}
-    >
+    <ListContext.Provider value={{ lists, setLists }}>
       <div>
-        <Modal show={modal} />
         <Switch>
           <Route path="/login">
             <LoginPage />

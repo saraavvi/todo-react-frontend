@@ -25,7 +25,7 @@ function App() {
       });
   }
   return (
-    <ListContext.Provider value="lists">
+    <ListContext.Provider value={{ lists }}>
       <div>
         <h1>Todo App!</h1>
         <Switch>

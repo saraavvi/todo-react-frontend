@@ -9,4 +9,7 @@ export const Api = {
       title: title,
     });
   },
+  deleteList: (id) => {
+    return axios.delete(`/api/lists/${id}`);
+  },
 };

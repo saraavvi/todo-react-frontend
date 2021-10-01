@@ -1,16 +1,16 @@
 import React from "react";
 import classes from "./Modal.module.css";
 
-const Modal = ({ title, body, lastModifiedAt, handleOnClick }) => {
+const Modal = ({ title, body, lastModifiedAt, handleModalClick }) => {
   return (
     <>
-      <div onClick={handleOnClick} className={classes["backdrop"]}></div>
+      <div onClick={handleModalClick} className={classes["backdrop"]}></div>
       <div className={classes["modal-container"]}>
         <div className="modal">
           <header className="modal-header">
             <h2 className="modal-header-title">{title}</h2>
             <p>Last modified at: {new Date(lastModifiedAt).toLocaleString()}</p>
-            <button onClick={handleOnClick} className="close">
+            <button onClick={handleModalClick} className="close">
               x
             </button>
           </header>

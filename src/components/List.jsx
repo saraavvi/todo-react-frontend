@@ -11,7 +11,13 @@ export default function List({ list }) {
   return (
     <div onClick={handleOnClick}>
       <h2>{list.title}</h2>
-      {showModal && <Modal title={list.title} body={list.body} />}
+      {showModal && (
+        <Modal
+          title={list.title}
+          body={list.body}
+          lastModifiedAt={list.lastModifiedAt}
+        />
+      )}
     </div>
   );
 }

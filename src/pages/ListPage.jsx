@@ -10,6 +10,7 @@ export default function ListPage() {
       {lists && (
         <>
           {lists.map((list) => {
+            console.log(list);
             return <List key={list._id} list={list} />;
           })}
         </>

@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import ListPage from "./pages/ListPage";
 import LoginPage from "./pages/LoginPage";
 import { ListContext } from "./contexts/ListContext";
+import Header from "./components/Header";
 
 function App() {
   const [lists, setLists] = useState(null);
@@ -27,6 +28,7 @@ function App() {
   return (
     <ListContext.Provider value={{ lists, setLists }}>
       <div>
+        <Header />
         <Switch>
           <Route path="/login">
             <LoginPage />

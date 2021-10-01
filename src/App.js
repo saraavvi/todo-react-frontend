@@ -4,27 +4,15 @@ import ListPage from "./pages/ListPage";
 import LoginPage from "./pages/LoginPage";
 import { ListContext } from "./contexts/ListContext";
 import Header from "./components/Header";
+import { Api } from "./api/Api";
 
 function App() {
   const [lists, setLists] = useState(null);
 
   useEffect(() => {
-    getAllLists();
+    Api.getAllLists().then((data) => setLists(data.data.data.lists));
   }, []);
 
-  function getAllLists() {
-    const url = "/api/lists";
-    fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setLists(data.data.lists);
-      });
-  }
   return (
     <ListContext.Provider value={{ lists, setLists }}>
       <div>

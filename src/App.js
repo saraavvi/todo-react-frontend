@@ -10,11 +10,14 @@ function App() {
   const [lists, setLists] = useState(null);
 
   useEffect(() => {
-    Api.getAllLists().then((data) => setLists(data.data.data.lists));
+    getAllLists();
   }, []);
 
+  function getAllLists() {
+    Api.getAllLists().then((data) => setLists(data.data.data.lists));
+  }
   return (
-    <ListContext.Provider value={{ lists, setLists }}>
+    <ListContext.Provider value={{ lists, getAllLists }}>
       <div>
         <Header />
         <Switch>

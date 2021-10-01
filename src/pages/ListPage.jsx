@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { ListContext } from "../contexts/ListContext";
 import List from "../components/List";
 import { Api } from "../api/Api";
+import classes from "./ListPage.module.css";
 
 export default function ListPage() {
   const { lists, getAllLists } = useContext(ListContext);
@@ -29,13 +30,15 @@ export default function ListPage() {
           onChange={handleOnChange}
         />
       </form>
-      {lists && (
-        <>
-          {lists.map((list) => {
-            return <List key={list._id} list={list} />;
-          })}
-        </>
-      )}
+      <div className={classes["lists-container"]}>
+        {lists && (
+          <>
+            {lists.map((list) => {
+              return <List key={list._id} list={list} />;
+            })}
+          </>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from "../components/Modal";
+import classes from "./List.module.css";
 
 export default function List({ list }) {
   const [showModal, setShowModal] = useState(false);
@@ -9,7 +10,7 @@ export default function List({ list }) {
   };
 
   return (
-    <>
+    <div className={classes["list-card"]}>
       <div onClick={handleOnClick}>
         <h2>{list.title}</h2>
       </div>
@@ -21,6 +22,6 @@ export default function List({ list }) {
           lastModifiedAt={list.lastModifiedAt}
         />
       )}
-    </>
+    </div>
   );
 }

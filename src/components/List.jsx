@@ -9,15 +9,18 @@ export default function List({ list }) {
   };
 
   return (
-    <div onClick={handleOnClick}>
-      <h2>{list.title}</h2>
+    <>
+      <div onClick={handleOnClick}>
+        <h2>{list.title}</h2>
+      </div>
       {showModal && (
         <Modal
+          handleOnClick={handleOnClick}
           title={list.title}
           body={list.body}
           lastModifiedAt={list.lastModifiedAt}
         />
       )}
-    </div>
+    </>
   );
 }

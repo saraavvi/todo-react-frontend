@@ -4,7 +4,7 @@ import classes from "./Modal.module.css";
 const Modal = ({ title, body, lastModifiedAt, handleOnClick }) => {
   return (
     <>
-      <div className={classes["backdrop"]}></div>
+      <div onClick={handleOnClick} className={classes["backdrop"]}></div>
       <div className={classes["modal-container"]}>
         <div className="modal">
           <header className="modal-header">

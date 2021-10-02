@@ -38,14 +38,7 @@ export default function List({ list }) {
           </button>
         </div>
       </div>
-      {showModal && (
-        <Modal
-          handleModalClick={handleModalClick}
-          title={list.title}
-          body={list.body}
-          lastModifiedAt={list.lastModifiedAt}
-        />
-      )}
+      {showModal && <Modal handleModalClick={handleModalClick} list={list} />}
     </>
   );
 }

@@ -18,17 +18,19 @@ export default function List({ list }) {
   };
 
   return (
-    <div className={classes["list-card"]}>
-      <div onClick={handleModalClick}>
-        <h2>{list.title}</h2>
+    <div>
+      <div className={classes["list-card"]}>
+        <div onClick={handleModalClick}>
+          <h2>{list.title}</h2>
+        </div>
+        <button
+          onClick={handleDeleteClick}
+          className={classes["delete-button"]}
+          type="button"
+        >
+          x
+        </button>
       </div>
-      <button
-        onClick={handleDeleteClick}
-        className={classes["delete-button"]}
-        type="button"
-      >
-        x
-      </button>
       {showModal && (
         <Modal
           handleModalClick={handleModalClick}

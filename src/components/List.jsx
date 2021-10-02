@@ -18,18 +18,25 @@ export default function List({ list }) {
   };
 
   return (
-    <div>
+    <>
       <div className={classes["list-card"]}>
         <div onClick={handleModalClick}>
-          <h2>{list.title}</h2>
+          <div>
+            <h2>{list.title}</h2>
+          </div>
+          <div className={classes["body-container"]}>
+            <p>{list.body}</p>
+          </div>
         </div>
-        <button
-          onClick={handleDeleteClick}
-          className={classes["delete-button"]}
-          type="button"
-        >
-          x
-        </button>
+        <div className={classes["button-container"]}>
+          <button
+            onClick={handleDeleteClick}
+            className={classes["delete-button"]}
+            type="button"
+          >
+            x
+          </button>
+        </div>
       </div>
       {showModal && (
         <Modal
@@ -39,6 +46,6 @@ export default function List({ list }) {
           lastModifiedAt={list.lastModifiedAt}
         />
       )}
-    </div>
+    </>
   );
 }

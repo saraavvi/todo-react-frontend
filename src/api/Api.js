@@ -9,6 +9,12 @@ export const Api = {
       title: title,
     });
   },
+  updateList: (id, title, body) => {
+    return axios.patch(`/api/lists/${id}`, {
+      title: title,
+      body: body,
+    });
+  },
   deleteList: (id) => {
     return axios.delete(`/api/lists/${id}`);
   },

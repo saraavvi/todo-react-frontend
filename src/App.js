@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import ListPage from "./pages/ListPage";
-import LoginPage from "./pages/LoginPage";
+import LandingPage from "./pages/LandingPage";
 import { ListContext } from "./contexts/ListContext";
 import Header from "./components/Header";
 import { Api } from "./api/Api";
@@ -17,11 +17,11 @@ function App() {
       <div>
         <Header />
         <Switch>
-          <Route path="/login">
-            <LoginPage />
+          <Route path="/lists">
+            <ListPage />
           </Route>
           <Route path="/">
-            <ListPage />
+            <LandingPage />
           </Route>
         </Switch>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import classes from "./Modal.module.css";
+import classes from "./ListModal.module.css";
 
 const Modal = ({ list, handleModalClick }) => {
   const [titleData, setTitleData] = useState("");

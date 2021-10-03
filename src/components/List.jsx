@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Modal from "../components/Modal";
+import ListModal from "./ListModal";
 import classes from "./List.module.css";
 
 export default function List({ list, handleDelete, handleUpdate }) {
@@ -42,7 +42,7 @@ export default function List({ list, handleDelete, handleUpdate }) {
         </div>
       </div>
       {showModal && (
-        <Modal
+        <ListModal
           handleModalClick={handleModalClick}
           list={list}
           handleUpdate={handleUpdate}

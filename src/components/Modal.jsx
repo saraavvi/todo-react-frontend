@@ -18,7 +18,7 @@ const Modal = ({ list, handleModalClick }) => {
     setBodyData(e.target.value);
   };
 
-  const closeModal = (e) => {
+  const closeModal = () => {
     handleModalClick(titleData, bodyData);
   };
 

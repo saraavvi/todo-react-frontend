@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import ListPage from "./pages/ListPage";
 import LoginPage from "./pages/LoginPage";
@@ -8,10 +8,6 @@ import { Api } from "./api/Api";
 
 function App() {
   const [lists, setLists] = useState(null);
-
-  useEffect(() => {
-    getAllLists();
-  }, []);
 
   function getAllLists() {
     Api.getAllLists().then((data) => setLists(data.data.data.lists));

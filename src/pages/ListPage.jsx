@@ -9,15 +9,28 @@ export default function ListPage() {
   const [input, setInput] = useState("");
 
   function handleOnChange(e) {
-    setInput(e.target.value.trim());
+    setInput(e.target.value);
   }
   function handleOnSubmit(e) {
     e.preventDefault();
     if (input.length > 0) {
-      Api.createList(input);
+      handleCreate(input);
       setInput("");
-      getAllLists();
     }
+  }
+  async function handleDelete(id) {
+    await Api.deleteList(id);
+    getAllLists();
+  }
+
+  async function handleCreate(input) {
+    await Api.createList(input);
+    getAllLists();
+  }
+
+  async function handleUpdate(id, title, body) {
+    await Api.updateList(id, title, body);
+    getAllLists();
   }
 
   return (
@@ -34,7 +47,14 @@ export default function ListPage() {
         {lists && (
           <>
             {lists.map((list) => {
-              return <List key={list._id} list={list} />;
+              return (
+                <List
+                  key={list._id}
+                  list={list}
+                  handleDelete={handleDelete}
+                  handleUpdate={handleUpdate}
+                />
+              );
             })}
           </>
         )}

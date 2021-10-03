@@ -18,9 +18,13 @@ const Modal = ({ list, handleModalClick }) => {
     setBodyData(e.target.value);
   };
 
+  const closeModal = (e) => {
+    handleModalClick(titleData, bodyData);
+  };
+
   return (
     <>
-      <div onClick={handleModalClick} className={classes["backdrop"]}></div>
+      <div onClick={closeModal} className={classes["backdrop"]}></div>
       <div className={classes["modal-container"]}>
         <div className="modal">
           <header className="modal-header">
@@ -32,7 +36,7 @@ const Modal = ({ list, handleModalClick }) => {
           <p>
             Last modified at: {new Date(list.lastModifiedAt).toLocaleString()}
           </p>
-          <button onClick={handleModalClick} className="close">
+          <button onClick={closeModal} className="close">
             close
           </button>
         </div>

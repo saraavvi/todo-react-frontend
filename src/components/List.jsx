@@ -1,20 +1,21 @@
 import React, { useState, useContext } from "react";
 import Modal from "../components/Modal";
 import classes from "./List.module.css";
-import { Api } from "../api/Api";
-import { ListContext } from "../contexts/ListContext";
 
-export default function List({ list }) {
-  const { getAllLists } = useContext(ListContext);
+export default function List({ list, handleDelete, handleUpdate }) {
   const [showModal, setShowModal] = useState(false);
 
-  const handleModalClick = () => {
-    showModal ? setShowModal(false) : setShowModal(true);
+  const handleModalClick = (titleData, bodyData) => {
+    if (showModal) {
+      setShowModal(false);
+      handleUpdate(list._id, titleData, bodyData);
+    } else {
+      setShowModal(true);
+    }
   };
 
   const handleDeleteClick = () => {
-    Api.deleteList(list._id).then((data) => console.log(data));
-    getAllLists();
+    handleDelete(list._id);
   };
 
   return (
@@ -38,7 +39,13 @@ export default function List({ list }) {
           </button>
         </div>
       </div>
-      {showModal && <Modal handleModalClick={handleModalClick} list={list} />}
+      {showModal && (
+        <Modal
+          handleModalClick={handleModalClick}
+          list={list}
+          handleUpdate={handleUpdate}
+        />
+      )}
     </>
   );
 }

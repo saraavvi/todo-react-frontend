@@ -8,7 +8,9 @@ export default function List({ list, handleDelete, handleUpdate }) {
   const handleModalClick = (titleData, bodyData) => {
     if (showModal) {
       setShowModal(false);
-      handleUpdate(list._id, titleData, bodyData);
+      if (list.title !== titleData || list.body !== bodyData) {
+        handleUpdate(list._id, titleData, bodyData);
+      }
     } else {
       setShowModal(true);
     }

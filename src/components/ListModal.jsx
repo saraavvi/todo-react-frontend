@@ -8,7 +8,7 @@ const Modal = ({ list, handleModalClick }) => {
   useEffect(() => {
     setTitleData(list.title);
     setBodyData(list.body);
-  }, []);
+  }, [list.title, list.body]);
 
   const handleTitleChange = (e) => {
     setTitleData(e.target.value);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classes from "./ListModal.module.css";
 
-const Modal = ({ list, handleModalClick }) => {
+const ListModal = ({ list, handleModalClick }) => {
   const [titleData, setTitleData] = useState("");
   const [bodyData, setBodyData] = useState("");
 
@@ -45,4 +45,4 @@ const Modal = ({ list, handleModalClick }) => {
   );
 };
 
-export default Modal;
+export default ListModal;

@@ -1,52 +1,24 @@
-import React, { useState } from "react";
-import ListModal from "./ListModal";
-import classes from "./List.module.css";
+import React, { useState } from 'react';
+import Modal from './Modal';
 
-export default function List({ list, handleDelete, handleUpdate }) {
+export default function ModalButton(props) {
   const [showModal, setShowModal] = useState(false);
 
-  const handleModalClick = (titleData, bodyData) => {
+  const handleModalClick = () => {
     if (showModal) {
       setShowModal(false);
-      if (list.title !== titleData || list.body !== bodyData) {
-        handleUpdate(list._id, titleData, bodyData);
-      }
     } else {
       setShowModal(true);
     }
   };
 
-  const handleDeleteClick = () => {
-    handleDelete(list._id);
-  };
-
   return (
     <>
-      <div className={classes["list-card"]}>
-        <div onClick={handleModalClick}>
-          <div>
-            <h2>{list.title}</h2>
-          </div>
-          <div className={classes["body-container"]}>
-            <p>{list.body}</p>
-          </div>
-        </div>
-        <div className={classes["button-container"]}>
-          <button
-            onClick={handleDeleteClick}
-            className={classes["delete-button"]}
-            type="button"
-          >
-            x
-          </button>
-        </div>
-      </div>
+      <button onClick={handleModalClick}>{props.buttonText}</button>
       {showModal && (
-        <ListModal
-          handleModalClick={handleModalClick}
-          list={list}
-          handleUpdate={handleUpdate}
-        />
+        <Modal handleModalClick={handleModalClick}>
+          {props.children}
+        </Modal>
       )}
     </>
   );

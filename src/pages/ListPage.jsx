@@ -1,18 +1,18 @@
-import React, { useContext, useState, useEffect } from "react";
-import { ListContext } from "../contexts/ListContext";
-import List from "../components/List";
-import { Api } from "../api/Api";
-import classes from "./ListPage.module.css";
+import React, { useContext, useState, useEffect } from 'react';
+import { ListContext } from '../contexts/ListContext';
+import List from '../components/List';
+import { Api } from '../api/Api';
+import classes from './ListPage.module.css';
 
 export default function ListPage() {
   const { lists, getAllLists } = useContext(ListContext);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
 
   useEffect(() => {
     if (!lists) {
       getAllLists();
     }
-  }, []);
+  }, [getAllLists, lists]);
 
   function handleOnChange(e) {
     setInput(e.target.value);
@@ -21,7 +21,7 @@ export default function ListPage() {
     e.preventDefault();
     if (input.length > 0) {
       handleCreate(input);
-      setInput("");
+      setInput('');
     }
   }
   async function handleDelete(id) {
@@ -44,12 +44,12 @@ export default function ListPage() {
       <form onSubmit={handleOnSubmit}>
         <input
           value={input}
-          type="text"
-          placeholder="New list..."
+          type='text'
+          placeholder='New list...'
           onChange={handleOnChange}
         />
       </form>
-      <div className={classes["lists-container"]}>
+      <div className={classes['lists-container']}>
         {lists && (
           <>
             {lists.map((list) => {

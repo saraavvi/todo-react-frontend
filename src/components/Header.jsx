@@ -5,7 +5,8 @@ export default function Header() {
   return (
     <header className={classes["header"]}>
       <h1>header</h1>
-      <p>username</p>
+      <button>Log in</button>
+      <button>Sign up</button>
     </header>
   );
 }

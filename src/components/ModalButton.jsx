@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from './Modal';
 
-export default function ModalButton(props) {
-  const [showModal, setShowModal] = useState(false);
-
+export default function ModalButton({
+  buttonText,
+  showModal,
+  setShowModal,
+  children,
+}) {
   const handleModalClick = () => {
     if (showModal) {
       setShowModal(false);
@@ -14,11 +17,9 @@ export default function ModalButton(props) {
 
   return (
     <>
-      <button onClick={handleModalClick}>{props.buttonText}</button>
+      <button onClick={handleModalClick}>{buttonText}</button>
       {showModal && (
-        <Modal handleModalClick={handleModalClick}>
-          {props.children}
-        </Modal>
+        <Modal handleModalClick={handleModalClick}>{children}</Modal>
       )}
     </>
   );

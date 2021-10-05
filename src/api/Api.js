@@ -1,14 +1,18 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const Api = {
-  getAllLists: () => {
+  getAllLists: (token) => {
     return axios
-      .get("/api/lists")
+      .get('/api/lists', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .catch((err) => console.log(err.response.data.message));
   },
   createList: (title) => {
     return axios
-      .post("/api/lists", {
+      .post('/api/lists', {
         title: title,
       })
       .catch((err) => console.log(err.response.data.message));
@@ -24,6 +28,14 @@ export const Api = {
   deleteList: (id) => {
     return axios
       .delete(`/api/lists/${id}`)
+      .catch((err) => console.log(err.response.data.message));
+  },
+  login: (data) => {
+    return axios
+      .post('http://localhost:3000/api/users/login', {
+        email: data.email,
+        password: data.password,
+      })
       .catch((err) => console.log(err.response.data.message));
   },
 };

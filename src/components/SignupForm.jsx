@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-const SignupForm = () => {
+const SignupForm = ({ setShowModal }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,6 +17,7 @@ const SignupForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
+  //TODO: handle signup
   const handlePost = (data) => {
     return axios
       .post('/api/users/signup', {
@@ -24,10 +25,8 @@ const SignupForm = () => {
       })
       .then((res) => res.json())
       .then((data) => {
-        if (data.token) {
-          localStorage.setItem('jwt', data.token);
-          history.push('/lists');
-        } else window.alert('Invalid email or password. Please try again.');
+        localStorage.setItem('jwt', data.token);
+        history.push('/lists');
       })
       .catch((err) => console.log(err.response.data.message));
   };

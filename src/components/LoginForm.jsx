@@ -10,12 +10,12 @@ const LoginForm = ({ setShowModal }) => {
 
   const history = useHistory();
 
-  function handleOnChange(e) {
+  const handleOnChange = (e) => {
     e.preventDefault();
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
+  };
 
-  function handleOnSubmit(e) {
+  const handleOnSubmit = (e) => {
     e.preventDefault();
     const loginData = {
       email: formData.email,
@@ -28,7 +28,7 @@ const LoginForm = ({ setShowModal }) => {
         setShowModal(false);
       } else window.alert('Invalid email or password. Please try again.');
     });
-  }
+  };
 
   return (
     <form onSubmit={handleOnSubmit}>

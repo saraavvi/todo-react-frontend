@@ -12,12 +12,12 @@ const SignupForm = ({ setShowModal }) => {
 
   const history = useHistory();
 
-  function handleOnChange(e) {
+  const handleOnChange = (e) => {
     e.preventDefault();
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
+  };
 
-  function handleOnSubmit(e) {
+  const handleOnSubmit = (e) => {
     e.preventDefault();
     const signupData = {
       name: formData.name,
@@ -25,15 +25,14 @@ const SignupForm = ({ setShowModal }) => {
       password: formData.password,
       passwordConfirm: formData.passwordConfirm,
     };
-    Api.signup(signupData)
-      .then((res) => {
-        if (res.data.token) {
-          localStorage.setItem('jwt', res.data.token);
-          history.push('/lists');
-          setShowModal(false);
-        } else window.alert('Error in signing up. Please try again.')
-      });
-  }
+    Api.signup(signupData).then((res) => {
+      if (res.data.token) {
+        localStorage.setItem('jwt', res.data.token);
+        history.push('/lists');
+        setShowModal(false);
+      } else window.alert('Error in signing up. Please try again.');
+    });
+  };
 
   return (
     <form onSubmit={handleOnSubmit}>

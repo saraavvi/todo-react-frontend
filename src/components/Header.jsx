@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { UserContext } from '../contexts/UserContext';
+import { ListContext } from '../contexts/ListContext';
 
 import classes from './Header.module.css';
 import LoginForm from './LoginForm';
@@ -11,12 +12,14 @@ import SignupForm from './SignupForm';
 export default function Header() {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
+  const { setLists } = useContext(ListContext);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
 
   function handleLogOut() {
     localStorage.removeItem('jwt');
     setUser(null);
+    setLists(null);
     history.push('/');
   }
 

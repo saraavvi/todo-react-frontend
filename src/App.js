@@ -31,7 +31,7 @@ function App() {
 
   return (
     <UserContext.Provider value={{ user, fetchUserData, setUser }}>
-      <ListContext.Provider value={{ lists, getAllLists }}>
+      <ListContext.Provider value={{ lists, getAllLists, setLists }}>
         <div>
           <Header />
           <Switch>

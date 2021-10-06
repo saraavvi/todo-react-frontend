@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classes from './ListModal.module.css';
+import ReactMarkdown from 'react-markdown';
 
 const ListModal = ({ list, handleModalClick }) => {
   const [titleData, setTitleData] = useState('');
@@ -36,7 +37,7 @@ const ListModal = ({ list, handleModalClick }) => {
       <div onClick={closeModal} className={classes['backdrop']}></div>
       <div className={classes['modal-container']}>
         <div className="modal">
-          <button onClick={toggleMode}>mode</button>
+          <button onClick={toggleMode}>edit</button>
           {editMode ? (
             <>
               <header className="modal-header">
@@ -49,10 +50,10 @@ const ListModal = ({ list, handleModalClick }) => {
           ) : (
             <>
               <header className="modal-header">
-                <p>{titleData}</p>
+                <h2>{titleData}</h2>
               </header>
               <main className="modal-content">
-                <textarea value={bodyData} onChange={handleBodyChange} />
+                <ReactMarkdown>{bodyData}</ReactMarkdown>
               </main>
             </>
           )}

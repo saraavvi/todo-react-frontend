@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+
+
 export const Api = {
   getAllLists: async (token) => {
     try {
@@ -83,4 +85,17 @@ export const Api = {
       return console.log(err.response.data.message);
     }
   },
+
+  getMe: async () => {
+    const token = localStorage.getItem('jwt');
+    try {
+      return axios.get('/api/users/getMe', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (err) {
+      return console.log(err.response.data.message)
+    }
+  }
 };

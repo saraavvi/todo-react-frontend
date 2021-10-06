@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Switch, Route } from 'react-router-dom';
+
 import ListPage from './pages/ListPage';
 import LandingPage from './pages/LandingPage';
 import { ListContext } from './contexts/ListContext';
@@ -11,23 +12,12 @@ function App() {
   const [lists, setLists] = useState(null);
   const [user, setUser] = useState(null);
 
-  const fetchUserData = () => {
-    const url = '/api/users/getMe';
-    const token = localStorage.getItem('jwt');
-    fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.data.user._id) {
-          console.log(data.data.user);
-          setUser(data.data.user);
-        }
-      })
-      .catch((err) => console.error(err));
+  const fetchUserData = async () => {
+    const response = await Api.getMe();
+    if (!response.data.data.user._id) {
+      return new Error('Unable to fetch lists');
+    }
+    setUser(response.data.data.user);
   };
 
   const getAllLists = useCallback(async () => {

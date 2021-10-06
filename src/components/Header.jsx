@@ -16,12 +16,12 @@ export default function Header() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
 
-  function handleLogOut() {
+  const handleLogOut = () => {
     localStorage.removeItem('jwt');
     setUser(null);
     setLists(null);
     history.push('/');
-  }
+  };
 
   return (
     <header className={classes['header']}>

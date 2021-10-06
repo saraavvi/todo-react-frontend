@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import classes from './CreateForm.module.css';
 
 export default function CreateForm({ handleCreate }) {
   const [input, setInput] = useState('');
@@ -17,8 +18,9 @@ export default function CreateForm({ handleCreate }) {
 
   return (
     <>
-      <form onSubmit={handleOnSubmit}>
+      <form className={classes['create-form']} onSubmit={handleOnSubmit}>
         <input
+          className={classes['create-form-title']}
           value={input}
           type="text"
           placeholder="New list..."

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import { Api } from '../api/Api';
 
 const SignupForm = ({ setShowModal }) => {
   const [formData, setFormData] = useState({
@@ -17,29 +17,22 @@ const SignupForm = ({ setShowModal }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  //TODO: handle signup
-  const handlePost = (data) => {
-    return axios
-      .post('/api/users/signup', {
-        body: data,
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem('jwt', data.token);
-        history.push('/lists');
-      })
-      .catch((err) => console.log(err.response.data.message));
-  };
-
   function handleOnSubmit(e) {
     e.preventDefault();
-    const payload = {
+    const signupData = {
       name: formData.name,
       email: formData.email,
       password: formData.password,
       passwordConfirm: formData.passwordConfirm,
     };
-    handlePost(payload);
+    Api.signup(signupData)
+      .then((res) => {
+        if (res.data.token) {
+          localStorage.setItem('jwt', res.data.token);
+          history.push('/lists');
+          setShowModal(false);
+        } else window.alert('Error in signing up. Please try again.')
+      });
   }
 
   return (
@@ -48,51 +41,51 @@ const SignupForm = ({ setShowModal }) => {
         <h2>Sign Up:</h2>
       </div>
       <div>
-        <label htmlFor='signupName'>Name</label>
+        <label htmlFor="signupName">Name</label>
         <input
-          type='name'
-          autoComplete='name'
-          id='signupName'
-          name='name'
+          type="name"
+          autoComplete="name"
+          id="signupName"
+          name="name"
           value={formData.name}
           onChange={handleOnChange}
         />
       </div>
       <div>
-        <label htmlFor='signupEmail'>Email address</label>
+        <label htmlFor="signupEmail">Email address</label>
         <input
-          type='email'
-          autoComplete='email'
-          id='signupEmail'
-          name='email'
+          type="email"
+          autoComplete="email"
+          id="signupEmail"
+          name="email"
           value={formData.email}
           onChange={handleOnChange}
         />
       </div>
       <div>
-        <label htmlFor='signupPassword'>Password</label>
+        <label htmlFor="signupPassword">Password</label>
         <input
-          type='password'
-          autoComplete='password'
-          id='signupPassword'
-          name='password'
+          type="password"
+          autoComplete="password"
+          id="signupPassword"
+          name="password"
           value={formData.password}
           onChange={handleOnChange}
         />
       </div>
       <div>
-        <label htmlFor='signupPasswordConfirm'>Confirm your password</label>
+        <label htmlFor="signupPasswordConfirm">Confirm your password</label>
         <input
-          type='passwordConfirm'
-          autoComplete='passwordConfirm'
-          id='signupPasswordConfirm'
-          name='passwordConfirm'
+          type="passwordConfirm"
+          autoComplete="passwordConfirm"
+          id="signupPasswordConfirm"
+          name="passwordConfirm"
           value={formData.passwordConfirm}
           onChange={handleOnChange}
         />
       </div>
       <div>
-        <input type='submit' value='Sign Up' />
+        <input type="submit" value="Sign Up" />
       </div>
     </form>
   );

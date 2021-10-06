@@ -50,12 +50,11 @@ export const Api = {
 
   deleteList: async (token, id) => {
     try {
-      return axios
-        .delete(`/api/lists/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+      return axios.delete(`/api/lists/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
     } catch (err) {
       return console.log(err.response.data.message);
     }
@@ -63,11 +62,23 @@ export const Api = {
 
   login: async (data) => {
     try {
-      return axios
-        .post('http://localhost:3000/api/users/login', {
-          email: data.email,
-          password: data.password,
-        });
+      return axios.post('/api/users/login', {
+        email: data.email,
+        password: data.password,
+      });
+    } catch (err) {
+      return console.log(err.response.data.message);
+    }
+  },
+
+  signup: async (data) => {
+    try {
+      return axios.post('/api/users/signup', {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        passwordConfirm: data.passwordConfirm,
+      });
     } catch (err) {
       return console.log(err.response.data.message);
     }

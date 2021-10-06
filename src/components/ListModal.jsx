@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classes from './ListModal.module.css';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const ListModal = ({ list, handleModalClick }) => {
   const [titleData, setTitleData] = useState('');
@@ -53,7 +54,9 @@ const ListModal = ({ list, handleModalClick }) => {
                 <h2>{titleData}</h2>
               </header>
               <main className="modal-content">
-                <ReactMarkdown>{bodyData}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {bodyData}
+                </ReactMarkdown>
               </main>
             </>
           )}

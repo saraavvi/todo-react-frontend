@@ -1,11 +1,10 @@
 .modal-container {
   position: fixed;
   left: 50%;
-  top: 25%;
+  top: 0;
   transform: translateX(-50%);
   width: 500px;
-  height: 300px;
-  margin: 5% auto;
+  height: 100vh;
   background: white;
   border: 1px solid #ccc;
   display: flex;
@@ -21,8 +20,7 @@
 }
 .md-editor {
   width: 90%;
-  height: 80%;
-  border: none;
+  height: 90%;
 }
 .modal-header {
   padding: 0 0.5rem;

@@ -40,7 +40,7 @@ const ListModal = ({ list, handleModalClick }) => {
         {editMode ? (
           <>
             <header className="modal-header">
-              <label for="title">Title:</label>
+              <label htmlFor="title">Title:</label>
               <input
                 id="title"
                 value={titleData}
@@ -81,7 +81,6 @@ const ListModal = ({ list, handleModalClick }) => {
           </div>
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 };

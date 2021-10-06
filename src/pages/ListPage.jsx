@@ -1,18 +1,26 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { ListContext } from '../contexts/ListContext';
+import { UserContext } from '../contexts/UserContext';
 import List from '../components/List';
 import { Api } from '../api/Api';
 import classes from './ListPage.module.css';
 
 export default function ListPage() {
   const { lists, getAllLists } = useContext(ListContext);
+  const { user, fetchUserData } = useContext(UserContext);
   const [input, setInput] = useState('');
 
   useEffect(() => {
     if (!lists) {
       getAllLists();
     }
-  }, [getAllLists, lists]);
+  }, [lists, getAllLists]);
+
+  useEffect(() => {
+    if (!user) {
+      fetchUserData();
+    }
+  }, [user, fetchUserData]);
 
   const handleOnChange = (e) => {
     setInput(e.target.value);

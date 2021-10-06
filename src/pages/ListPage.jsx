@@ -14,38 +14,43 @@ export default function ListPage() {
     }
   }, [getAllLists, lists]);
 
-  function handleOnChange(e) {
+  const handleOnChange = (e) => {
     setInput(e.target.value);
-  }
-  function handleOnSubmit(e) {
+  };
+
+  const handleOnSubmit = (e) => {
     e.preventDefault();
     if (input.length > 0) {
       handleCreate(input);
       setInput('');
     }
-  }
-  async function handleDelete(id) {
-    await Api.deleteList(id);
-    getAllLists();
-  }
+  };
 
-  async function handleCreate(input) {
-    await Api.createList(input);
+  const handleCreate = async (input) => {
+    const token = localStorage.getItem('jwt');
+    await Api.createList(token, input);
     getAllLists();
-  }
+  };
 
-  async function handleUpdate(id, title, body) {
-    await Api.updateList(id, title, body);
+  const handleUpdate = async (id, title, body) => {
+    const token = localStorage.getItem('jwt');
+    await Api.updateList(token, id, title, body);
     getAllLists();
-  }
+  };
+
+  const handleDelete = async (id) => {
+    const token = localStorage.getItem('jwt');
+    await Api.deleteList(token, id);
+    getAllLists();
+  };
 
   return (
     <div>
       <form onSubmit={handleOnSubmit}>
         <input
           value={input}
-          type='text'
-          placeholder='New list...'
+          type="text"
+          placeholder="New list..."
           onChange={handleOnChange}
         />
       </form>

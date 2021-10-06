@@ -1,33 +1,50 @@
 import axios from 'axios';
 
 export const Api = {
-  getAllLists: (token) => {
+  getAllLists: async (token) => {
+    try {
+      return axios.get('/api/lists', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (err) {
+      return console.log(err.response.data.message);
+    }
+  },
+  createList: async (token, title) => {
+    try {
+      return axios.post(
+        '/api/lists',
+        { title: title },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (err) {
+      return console.log(err.response.data.message);
+    }
+  },
+  updateList: (token, id, title, body) => {
     return axios
-      .get('/api/lists', {
+      .patch(`/api/lists/${id}`, {
+        title: title,
+        body: body,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .catch((err) => console.log(err.response.data.message));
   },
-  createList: (title) => {
+  deleteList: (token, id) => {
     return axios
-      .post('/api/lists', {
-        title: title,
+      .delete(`/api/lists/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
-      .catch((err) => console.log(err.response.data.message));
-  },
-  updateList: (id, title, body) => {
-    return axios
-      .patch(`/api/lists/${id}`, {
-        title: title,
-        body: body,
-      })
-      .catch((err) => console.log(err.response.data.message));
-  },
-  deleteList: (id) => {
-    return axios
-      .delete(`/api/lists/${id}`)
       .catch((err) => console.log(err.response.data.message));
   },
   login: (data) => {

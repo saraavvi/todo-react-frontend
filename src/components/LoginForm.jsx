@@ -36,29 +36,29 @@ const LoginForm = ({ setShowModal }) => {
         <h2>Log In:</h2>
       </div>
       <div>
-        <label htmlFor='loginEmail'>Email address</label>
+        <label htmlFor="loginEmail">Email address</label>
         <input
-          type='email'
-          autoComplete='email'
-          id='loginEmail'
-          name='email'
+          type="email"
+          autoComplete="email"
+          id="loginEmail"
+          name="email"
           value={formData.email}
           onChange={handleOnChange}
         />
       </div>
       <div>
-        <label htmlFor='loginPassword'>Password</label>
+        <label htmlFor="loginPassword">Password</label>
         <input
-          type='password'
-          autoComplete='password'
-          id='loginPassword'
-          name='password'
+          type="password"
+          autoComplete="password"
+          id="loginPassword"
+          name="password"
           value={formData.password}
           onChange={handleOnChange}
         />
       </div>
       <div>
-        <input type='submit' value='Log In' />
+        <input type="submit" value="Log In" />
       </div>
     </form>
   );

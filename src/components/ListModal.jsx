@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import classes from "./ListModal.module.css";
+import React, { useState, useEffect } from 'react';
+import classes from './ListModal.module.css';
 
 const ListModal = ({ list, handleModalClick }) => {
-  const [titleData, setTitleData] = useState("");
-  const [bodyData, setBodyData] = useState("");
+  const [titleData, setTitleData] = useState('');
+  const [bodyData, setBodyData] = useState('');
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
     setTitleData(list.title);
@@ -22,17 +23,39 @@ const ListModal = ({ list, handleModalClick }) => {
     handleModalClick(titleData, bodyData);
   };
 
+  const toggleMode = () => {
+    if (editMode) {
+      setEditMode(false);
+    } else {
+      setEditMode(true);
+    }
+  };
+
   return (
     <>
-      <div onClick={closeModal} className={classes["backdrop"]}></div>
-      <div className={classes["modal-container"]}>
+      <div onClick={closeModal} className={classes['backdrop']}></div>
+      <div className={classes['modal-container']}>
         <div className="modal">
-          <header className="modal-header">
-            <input value={titleData} onChange={handleTitleChange} />
-          </header>
-          <main className="modal-content">
-            <textarea value={bodyData} onChange={handleBodyChange} />
-          </main>
+          <button onClick={toggleMode}>mode</button>
+          {editMode ? (
+            <>
+              <header className="modal-header">
+                <input value={titleData} onChange={handleTitleChange} />
+              </header>
+              <main className="modal-content">
+                <textarea value={bodyData} onChange={handleBodyChange} />
+              </main>
+            </>
+          ) : (
+            <>
+              <header className="modal-header">
+                <p>{titleData}</p>
+              </header>
+              <main className="modal-content">
+                <textarea value={bodyData} onChange={handleBodyChange} />
+              </main>
+            </>
+          )}
           <p>
             Last modified at: {new Date(list.lastModifiedAt).toLocaleString()}
           </p>

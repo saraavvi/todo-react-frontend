@@ -1,14 +1,14 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ListContext } from '../contexts/ListContext';
 import { UserContext } from '../contexts/UserContext';
 import List from '../components/List';
 import { Api } from '../api/Api';
 import classes from './ListPage.module.css';
+import CreateForm from '../components/CreateForm';
 
 export default function ListPage() {
   const { lists, getAllLists } = useContext(ListContext);
   const { user, fetchUserData } = useContext(UserContext);
-  const [input, setInput] = useState('');
 
   useEffect(() => {
     if (!lists) {
@@ -21,18 +21,6 @@ export default function ListPage() {
       fetchUserData();
     }
   }, [user, fetchUserData]);
-
-  const handleOnChange = (e) => {
-    setInput(e.target.value);
-  };
-
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
-    if (input.length > 0) {
-      handleCreate(input);
-      setInput('');
-    }
-  };
 
   const handleCreate = async (input) => {
     const token = localStorage.getItem('jwt');
@@ -54,14 +42,7 @@ export default function ListPage() {
 
   return (
     <div>
-      <form onSubmit={handleOnSubmit}>
-        <input
-          value={input}
-          type="text"
-          placeholder="New list..."
-          onChange={handleOnChange}
-        />
-      </form>
+      <CreateForm handleCreate={handleCreate} />
       <div className={classes['lists-container']}>
         {lists && (
           <>

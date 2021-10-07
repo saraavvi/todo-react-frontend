@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-
-
 export const Api = {
   getAllLists: async (token) => {
     try {
@@ -15,20 +13,17 @@ export const Api = {
     }
   },
 
-  createList: async (token, title) => {
-    try {
-      return axios.post(
-        '/api/lists',
-        { title: title },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-    } catch (err) {
-      return console.log(err.response.data.message);
-    }
+  createList: async (title) => {
+    const token = localStorage.getItem('jwt');
+    return axios.post(
+      '/api/lists',
+      { title: title },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
   },
 
   updateList: async (token, id, title, body) => {
@@ -95,7 +90,7 @@ export const Api = {
         },
       });
     } catch (err) {
-      return console.log(err.response.data.message)
+      return console.log(err.response.data.message);
     }
-  }
+  },
 };

@@ -3,3 +3,13 @@
   flex-wrap: wrap;
   align-items: flex-start;
 }
+
+.listError {
+  background-color: lightyellow;
+  text-align: center;
+}
+
+.listLoading {
+  background-color: aliceblue;
+  text-align: center;
+}

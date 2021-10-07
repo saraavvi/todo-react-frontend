@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classes from './ListModal.module.css';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const ListModal = ({ list, handleModalClick }) => {
   const [titleData, setTitleData] = useState('');
@@ -36,33 +37,48 @@ const ListModal = ({ list, handleModalClick }) => {
     <>
       <div onClick={closeModal} className={classes['backdrop']}></div>
       <div className={classes['modal-container']}>
-        <div className="modal">
-          <button onClick={toggleMode}>edit</button>
-          {editMode ? (
-            <>
-              <header className="modal-header">
-                <input value={titleData} onChange={handleTitleChange} />
-              </header>
-              <main className="modal-content">
-                <textarea value={bodyData} onChange={handleBodyChange} />
-              </main>
-            </>
-          ) : (
-            <>
-              <header className="modal-header">
-                <h2>{titleData}</h2>
-              </header>
-              <main className="modal-content">
-                <ReactMarkdown>{bodyData}</ReactMarkdown>
-              </main>
-            </>
-          )}
+        {editMode ? (
+          <>
+            <header className="modal-header">
+              <label htmlFor="title">Title:</label>
+              <input
+                id="title"
+                value={titleData}
+                onChange={handleTitleChange}
+              />
+            </header>
+            <main className={classes['modal-content']}>
+              <textarea
+                className={classes['md-editor']}
+                value={bodyData}
+                onChange={handleBodyChange}
+              />
+            </main>
+          </>
+        ) : (
+          <>
+            <header className={classes['modal-header']}>
+              <h2>{titleData}</h2>
+            </header>
+            <main className={classes['modal-content']}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {bodyData}
+              </ReactMarkdown>
+            </main>
+          </>
+        )}
+        <div className={classes['modal-footer']}>
           <p>
             Last modified at: {new Date(list.lastModifiedAt).toLocaleString()}
           </p>
-          <button onClick={closeModal} className="close">
-            close
-          </button>
+          <div className={classes['button-container']}>
+            {editMode ? (
+              <button onClick={toggleMode}>done</button>
+            ) : (
+              <button onClick={toggleMode}>edit</button>
+            )}
+            <button onClick={closeModal}>close</button>
+          </div>
         </div>
       </div>
     </>

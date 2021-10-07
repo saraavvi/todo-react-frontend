@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ListModal from './ListModal';
 import classes from './List.module.css';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function List({ list, handleDelete, handleUpdate }) {
   const [showModal, setShowModal] = useState(false);
@@ -29,7 +30,9 @@ export default function List({ list, handleDelete, handleUpdate }) {
             <h2>{list.title}</h2>
           </div>
           <div className={classes['body-container']}>
-            <ReactMarkdown>{list.body}</ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {list.body}
+            </ReactMarkdown>
           </div>
         </div>
         <div className={classes['button-container']}>

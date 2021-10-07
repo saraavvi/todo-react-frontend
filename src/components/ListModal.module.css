@@ -1,12 +1,14 @@
 .modal-container {
   position: fixed;
   left: 50%;
-  top: 25%;
+  top: 0;
   transform: translateX(-50%);
   width: 500px;
-  margin: 5% auto;
+  height: 100vh;
   background: white;
   border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
 }
 .backdrop {
   position: fixed;
@@ -15,4 +17,24 @@
   height: 100vh;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.146);
+}
+.md-editor {
+  width: 90%;
+  height: 90%;
+}
+.modal-header {
+  padding: 0 0.5rem;
+  border-bottom: 1px solid grey;
+}
+.modal-content {
+  padding: 0 0.5rem;
+  flex-grow: 1;
+}
+.modal-footer {
+  padding: 0 0.5rem;
+  border-top: 1px solid grey;
+  margin-top: auto;
+}
+.button-container {
+  padding-bottom: 0.5rem;
 }

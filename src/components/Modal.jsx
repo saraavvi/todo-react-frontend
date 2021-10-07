@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './ListModal.module.css';
+import classes from './Modal.module.css';
 
 const Modal = (props) => {
   const closeModal = () => {
@@ -10,7 +10,7 @@ const Modal = (props) => {
     <>
       <div onClick={closeModal} className={classes['backdrop']}></div>
       <div className={classes['modal-container']}>
-        <div className='modal'>{props.children}</div>
+        <div className="modal">{props.children}</div>
       </div>
     </>
   );

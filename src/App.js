@@ -5,8 +5,8 @@ import ListPage from './pages/ListPage';
 import LandingPage from './pages/LandingPage';
 import { ListContext } from './contexts/ListContext';
 import { UserContext } from './contexts/UserContext';
-import Header from './components/Header';
 import { Api } from './api/Api';
+import Layout from './components/layout/Layout';
 
 function App() {
   const [lists, setLists] = useState(null);
@@ -32,8 +32,7 @@ function App() {
   return (
     <UserContext.Provider value={{ user, fetchUserData, setUser }}>
       <ListContext.Provider value={{ lists, getAllLists, setLists }}>
-        <div>
-          <Header />
+        <Layout>
           <Switch>
             <Route path="/lists">
               <ListPage />
@@ -42,7 +41,7 @@ function App() {
               <LandingPage />
             </Route>
           </Switch>
-        </div>
+        </Layout>
       </ListContext.Provider>
     </UserContext.Provider>
   );

@@ -17,7 +17,7 @@ export default function ModalButton({
 
   return (
     <>
-      <button onClick={handleModalClick}>{buttonText}</button>
+      <button className="btn" onClick={handleModalClick}>{buttonText}</button>
       {showModal && (
         <Modal handleModalClick={handleModalClick}>{children}</Modal>
       )}

@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 export default function LandingPage() {
   return (
-    <div>
+    <div className="centered">
       <h1>Landing Page</h1>
     </div>
   );

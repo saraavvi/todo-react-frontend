@@ -3,7 +3,7 @@ import axios from 'axios';
 export const Api = {
   getAllLists: async (token) => {
     try {
-      return axios.get('/api/lists', {
+      return axios.get(`${process.env.REACT_APP_BASE_URL}/api/lists`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -16,7 +16,7 @@ export const Api = {
   createList: async (title) => {
     const token = localStorage.getItem('jwt');
     return axios.post(
-      '/api/lists',
+      `${process.env.REACT_APP_BASE_URL}/api/lists`,
       { title: title },
       {
         headers: {
@@ -29,7 +29,7 @@ export const Api = {
   updateList: async (token, id, title, body) => {
     try {
       return axios.patch(
-        `/api/lists/${id}`,
+        `${process.env.REACT_APP_BASE_URL}/api/lists/${id}`,
         {
           title: title,
           body: body,
@@ -47,7 +47,7 @@ export const Api = {
 
   deleteList: async (token, id) => {
     try {
-      return axios.delete(`/api/lists/${id}`, {
+      return axios.delete(`${process.env.REACT_APP_BASE_URL}/api/lists/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -59,7 +59,7 @@ export const Api = {
 
   login: async (data) => {
     try {
-      return axios.post('/api/users/login', {
+      return axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/login`, {
         email: data.email,
         password: data.password,
       });
@@ -70,7 +70,7 @@ export const Api = {
 
   signup: async (data) => {
     try {
-      return axios.post('/api/users/signup', {
+      return axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/signup`, {
         name: data.name,
         email: data.email,
         password: data.password,
@@ -84,7 +84,7 @@ export const Api = {
   getMe: async () => {
     const token = localStorage.getItem('jwt');
     try {
-      return axios.get('/api/users/getMe', {
+      return axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/getMe`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

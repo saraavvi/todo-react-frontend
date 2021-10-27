@@ -31,10 +31,14 @@ export default function Header() {
           {user !== null ? (
             <>
               <li>
-                <span>Logged in as {user.name}</span>
+                <span className={classes.loggedin}>
+                  Logged in as {user.name}
+                </span>
               </li>
               <li>
-                <button onClick={handleLogOut}>Log Out</button>
+                <button className="btn" onClick={handleLogOut}>
+                  Log Out
+                </button>
               </li>
             </>
           ) : (

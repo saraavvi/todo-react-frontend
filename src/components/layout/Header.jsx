@@ -25,7 +25,7 @@ export default function Header() {
 
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>Glennifer's TODO</div>
+      <div className={classes.logo}>Markdown Remiders</div>
       <nav className={classes.nav}>
         <ul>
           {user !== null ? (

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Api } from '../api/Api';
+import classes from './Form.module.css';
 
 const SignupForm = ({ setShowModal }) => {
   const [formData, setFormData] = useState({
@@ -39,7 +40,7 @@ const SignupForm = ({ setShowModal }) => {
       <div>
         <h2>Sign Up:</h2>
       </div>
-      <div>
+      <div className={classes.control}>
         <label htmlFor="signupName">Name</label>
         <input
           type="name"
@@ -50,7 +51,7 @@ const SignupForm = ({ setShowModal }) => {
           onChange={handleOnChange}
         />
       </div>
-      <div>
+      <div className={classes.control}>
         <label htmlFor="signupEmail">Email address</label>
         <input
           type="email"
@@ -61,7 +62,7 @@ const SignupForm = ({ setShowModal }) => {
           onChange={handleOnChange}
         />
       </div>
-      <div>
+      <div className={classes.control}>
         <label htmlFor="signupPassword">Password</label>
         <input
           type="password"
@@ -72,7 +73,7 @@ const SignupForm = ({ setShowModal }) => {
           onChange={handleOnChange}
         />
       </div>
-      <div>
+      <div className={classes.control}>
         <label htmlFor="signupPasswordConfirm">Confirm your password</label>
         <input
           type="passwordConfirm"
@@ -83,8 +84,8 @@ const SignupForm = ({ setShowModal }) => {
           onChange={handleOnChange}
         />
       </div>
-      <div>
-        <input type="submit" value="Sign Up" />
+      <div className={classes.actions}>
+        <input type="submit" value="Sign Up" className="btn btn_small" />
       </div>
     </form>
   );

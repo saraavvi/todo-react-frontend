@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Api } from '../api/Api';
+import classes from './Form.module.css';
 
 const LoginForm = ({ setShowModal }) => {
   const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ const LoginForm = ({ setShowModal }) => {
       <div>
         <h2>Log In:</h2>
       </div>
-      <div>
+      <div className={classes.control}>
         <label htmlFor="loginEmail">Email address</label>
         <input
           type="email"
@@ -46,7 +47,7 @@ const LoginForm = ({ setShowModal }) => {
           onChange={handleOnChange}
         />
       </div>
-      <div>
+      <div className={classes.control}>
         <label htmlFor="loginPassword">Password</label>
         <input
           type="password"
@@ -57,8 +58,8 @@ const LoginForm = ({ setShowModal }) => {
           onChange={handleOnChange}
         />
       </div>
-      <div>
-        <input type="submit" value="Log In" />
+      <div className={classes.actions}>
+        <input type="submit" value="Log In" className="btn btn_small" />
       </div>
     </form>
   );

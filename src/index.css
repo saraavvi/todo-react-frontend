@@ -33,6 +33,10 @@ body {
   cursor: pointer;
 }
 
+.btn_small {
+  font-size: 1rem;
+}
+
 .btn:hover,
 .btn:active {
   background-color: #11acac;

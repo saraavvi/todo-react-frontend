@@ -27,7 +27,7 @@ export default function Header() {
     <header className={classes.header}>
       <div className={classes.logo}>Markdown Reminders</div>
       <nav className={classes.nav}>
-        <ul>
+        <ul className={classes.nav_list}>
           {user !== null ? (
             <>
               <li>

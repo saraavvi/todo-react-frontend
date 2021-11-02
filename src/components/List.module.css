@@ -30,6 +30,6 @@
   font-size: 1.5rem;
   display: none;
 }
-.button-container:hover .delete-button {
+.list-card:hover .delete-button {
   display: block;
 }

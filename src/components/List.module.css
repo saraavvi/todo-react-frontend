@@ -1,4 +1,5 @@
 .list-card {
+  background-color:#ffffff;
   border: 1px solid #008080;
   border-radius: 5px;
   width: 250px;
@@ -29,6 +30,6 @@
   font-size: 1.5rem;
   display: none;
 }
-.button-container:hover .delete-button {
+.list-card:hover .delete-button {
   display: block;
 }

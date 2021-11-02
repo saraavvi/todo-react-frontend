@@ -3,7 +3,7 @@ import React from 'react';
 export default function LandingPage() {
   return (
     <div className="centered">
-      <h1>Landing Page</h1>
+      <img src="/logo.png" alt="pen and paper"></img>
     </div>
   );
 }

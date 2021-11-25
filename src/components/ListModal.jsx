@@ -34,54 +34,68 @@ const ListModal = ({ list, handleModalClick }) => {
   };
 
   return (
-    <>
+    <div className={classes.dialog}>
       <div onClick={closeModal} className={classes['backdrop']}></div>
       <div className={classes['modal-container']}>
-        {editMode ? (
-          <>
-            <header className="modal-header">
-              <label htmlFor="title">Title:</label>
-              <input
-                id="title"
-                value={titleData}
-                onChange={handleTitleChange}
-              />
-            </header>
-            <main className={classes['modal-content']}>
-              <textarea
-                className={classes['md-editor']}
-                value={bodyData}
-                onChange={handleBodyChange}
-              />
-            </main>
-          </>
-        ) : (
-          <>
-            <header className={classes['modal-header']}>
-              <h2>{titleData}</h2>
-            </header>
-            <main className={classes['modal-content']}>
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {bodyData}
-              </ReactMarkdown>
-            </main>
-          </>
-        )}
-        <div className={classes['modal-footer']}>
-          <p>
-            Last modified at: {new Date(list.lastModifiedAt).toLocaleString()}
-          </p>
-          <div className={classes['button-container']}>
-            {editMode ? (
-              <button onClick={toggleMode}>done</button>
-            ) : (
-              <button onClick={toggleMode}>edit</button>
-            )}
-            <button onClick={closeModal}>close</button>
+        <div className={classes.content}>
+          {editMode ? (
+            <>
+              <header className={classes['modal-header']}>
+                <div className={classes.control}>
+                  <label htmlFor="title">Title:</label>
+                  <input
+                    id="title"
+                    value={titleData}
+                    onChange={handleTitleChange}
+                  />
+                </div>
+              </header>
+              <main className={classes['modal-body']}>
+                <div className={classes.control}>
+                  <label htmlFor="body">Body:</label>
+                  <textarea
+                    id="body"
+                    className={classes['md-editor']}
+                    value={bodyData}
+                    onChange={handleBodyChange}
+                  />
+                </div>
+              </main>
+            </>
+          ) : (
+            <>
+              <header className={classes['modal-header']}>
+                <h2>{titleData}</h2>
+              </header>
+              <main className={classes['modal-body']}>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {bodyData}
+                </ReactMarkdown>
+              </main>
+            </>
+          )}
+          <div className={classes['modal-footer']}>
+            <p>
+              Last modified at: {new Date(list.lastModifiedAt).toLocaleString()}
+            </p>
+            <div className={classes['button-container']}>
+              {editMode ? (
+                <button onClick={toggleMode} className="btn btn_small">
+                  done
+                </button>
+              ) : (
+                <button onClick={toggleMode} className="btn btn_small">
+                  edit
+                </button>
+              )}
+              <button onClick={closeModal} className="btn btn_small">
+                close
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

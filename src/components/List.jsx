@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ListModal from './ListModal';
 import classes from './List.module.css';
 import ReactMarkdown from 'react-markdown';
@@ -6,6 +6,10 @@ import remarkGfm from 'remark-gfm';
 
 export default function List({ list, handleDelete, handleUpdate }) {
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    document.body.classList.toggle('modal-open', showModal);
+  }, [showModal]);
 
   const handleModalClick = (titleData, bodyData) => {
     if (showModal) {

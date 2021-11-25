@@ -4,10 +4,14 @@
 }
 .create-form-title {
   width: 100%;
-  border: 1px solid #008080;
-  height: 2rem;
+  border: 1px solid rgb(222, 222, 222);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+  height: 3rem;
   border-radius: 0.3rem;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
 }
 .create-form-title:focus {
   outline: none;

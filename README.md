@@ -1,16 +1,26 @@
-# A TODO app using Markdown
+# Markdown Reminders
 
-A MERN app.
+This was a school assignment with the following requirements; create a fullstack mern todo app. The user should be able to: 
+* create an account and login
+* create lists
+* uppdate lists with markdown
+
+## Tech
+
+React
+Express
+MongoDB
 
 ## Team members
 
 - [Björn Tirsén](https://github.com/bjorntirsen)
 - [Sara Viktorsson](https://github.com/saraavvi)
 
-### Site link:
+
+## view it live:
 
 https://mern-sara-todo.netlify.app/
 
-### Backend repo:
+## Backend repo:
 
 https://github.com/saraavvi/todo-rest-api
